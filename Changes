@@ -1,5 +1,11 @@
 Revision history for Dist-Release
 
-0.0.1  Sat Nov  8 20:44:38 2008
-       Initial release.
+0.0_2
+        - Added a Github action
+        - Beefed up the dependencies in Build.PL
+        - Added a Builder step (parent class for Build-specific steps)
+        - Added a beginning of documentation
+
+0.0_1  Sat Nov  8 20:44:38 2008
+       Initial release
 

@@ -41,13 +41,12 @@ sub release {
     my ( $id, $password ) =
       map { $self->distrel->config->{pause}{$_} } qw/ id password /;
 
-    $self->diag( "using user '$id'" );
+    $self->diag("using user '$id'");
 
-    my $uploader = CPAN::Uploader->new;
+    my $args = { user => $id, password => $password };
 
     unless ( $self->distrel->pretend ) {
-        $uploader->upload_file( $tarball,
-            { user => $id, password => $password } );
+        CPAN::Uploader->upload_file( $tarball, $args );
     }
 }
 

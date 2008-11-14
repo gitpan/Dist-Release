@@ -9,15 +9,19 @@ xt/pod-coverage.t
 xt/pod.t
 lib/Dist/Release/Action.pm
 lib/Dist/Release/Action/CPANUpload.pm
-lib/Dist/Release/Action/DoSomething.pm
 lib/Dist/Release/Check.pm
 lib/Dist/Release/Check/VCS/WorkingDirClean.pm
 lib/Dist/Release/Check/VCS/WorkingDirClean/Git.pm
 lib/Dist/Release/Check/Manifest/Build.pm
 lib/Dist/Release/Step.pm
+lib/Dist/Release/Action/GenerateDistribution.pm
+lib/Dist/Release/Check/Manifest.pm
+lib/Dist/Release/Step/VCS.pm
 script/distrelease
 xt/perlcritic.t
 xt/pod-coverage.t
 xt/pod.t
 
 META.yml
+lib/Dist/Release/Action/Github.pm
+xt/dependencies.t
