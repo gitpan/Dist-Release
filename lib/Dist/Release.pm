@@ -7,13 +7,14 @@ use warnings;
 
 use Moose::Policy 'MooseX::Policy::SemiAffordanceAccessor';
 use Moose;
+use MooseX::Method::Signatures;
 
 use YAML;
 use Term::ANSIColor;
 use Hash::Merge 'merge';
 use Readonly;
 
-our $VERSION = '0.0_3';
+our $VERSION = '0.0_4';
 
 Readonly my $rc_filename => 'distrelease.yml';
 
@@ -43,6 +44,27 @@ has pretend => ( is => 'ro', default => 1 );
 
 has stash => ( isa => 'HashRef', is => 'rw', default => sub { {} } );
 
+has version => (
+    is      => 'ro',
+    lazy    => 1,
+    default => sub {
+        my $self = shift;
+        require Dist::Release::Version;
+        my $v;
+        if ( my $f = $self->config->{distversion}{file} ) {
+            $v = Dist::Release::Version->new( config => $f );
+        }
+        else {
+            die "no distversion info found in config file\n"
+              unless $self->config->{distversion}{code};
+            $v =
+              Dist::Release::Version->new(
+                code => $self->config->{distversion}{code} );
+        }
+        return $v;
+    },
+);
+
 sub detect_builder {
     return
         -f 'Build.PL'    ? 'Build'
@@ -51,13 +73,15 @@ sub detect_builder {
       :                    undef;
 }
 
-sub run {
-    my $self = shift;
+method run {
 
     if ( $self->pretend ) {
         say 'Dist::Release will only pretend to perform the actions ',
           '(use --doit for the real deal)';
     }
+
+    # build anew
+    $self->build;
 
     my $fails = $self->check;
 
@@ -71,13 +95,37 @@ sub run {
     $self->release;
 }
 
+sub build {
+    my $self = shift;
+
+    my $builder = $self->builder
+      or return say "no builder found...";
+
+    $self->print_section("Building anew with $builder");
+
+    if ( $builder eq 'Build' ) {
+        do 'Build.PL';
+    }
+    elsif ( $builder eq 'MakeMaker' ) {
+        do 'Makefile.PL';
+    }
+    else {
+        die "not implemented yet\n";
+    }
+
+}
+
+sub print_section {
+    shift;
+    say '-' x 30, ' ', @_;
+}
+
 sub init_actions {
     my ( $self, $value, $set ) = @_;
 
     if ( 'ARRAY' eq ref $value ) {
         $self->add_actions(@$value);
     }
-
 }
 
 sub init_checks {
@@ -175,7 +223,7 @@ sub check {
 
     my $failed_checks;
 
-    print "running check cycle...\n";
+    $self->print_section('running check cycle');
 
     print "regular checks\n";
 
@@ -221,7 +269,7 @@ sub check_single {
 sub release {
     my $self = shift;
 
-    print "running release cycle...\n";
+    $self->print_section('running release cycle');
 
     my @actions = $self->actions;
     while ( my $a = shift @actions ) {
@@ -263,9 +311,20 @@ __END__
 
 =head1 NAME
 
-Dist::Release - manages the process of releasing a module 
+Dist::Release - manages the process of releasing a module (DEPRECATED)
 
 =head1 DESCRIPTION
+
+B<THIS MODULE IS DEPRECATED>
+
+Back in its early days, L<Dist::Zilla> wasn't quite scratching the release itch
+to my satisfaction, so I had to have a go at it with I<Dist::Release>. But
+now that I<Dist::Zilla> has blossomed to full-fledged awesomeness, it makes
+much more sense to join the party than to continue on a parallel effort. Hence
+de deprecation. I'll
+keep this module around a little while still, but I strongly recommend to use 
+I<Dist::Zilla> instead. You'll like it better, trust me.
+
 
 Dist::Release is meant to help CPAN authors automate the 
 release process of their modules. In Dist::Release, the 
@@ -293,7 +352,10 @@ I<undef> if it couldn't find anything.
 
 =head1 SEE ALSO
 
+L<Dist::Zilla> - rjbs' awesome distribution builder
+
 L<Module::Release> - another module tackling the same task.
+
 
 
 =head1 version

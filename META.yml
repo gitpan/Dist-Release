@@ -1,57 +1,72 @@
 ---
-name: Dist-Release
-version: 0.0_3
+abstract: 'manages the process of releasing a module (DEPRECATED)'
 author:
   - 'Yanick Champoux <yanick@cpan.org>'
-abstract: manages the process of releasing a module
+configure_requires:
+  Module::Build: 0.36
+generated_by: 'Module::Build version 0.3603'
 license: perl
-resources:
-  bugtracker: http://rt.cpan.org/NoAuth/Bugs.html?Dist=Dist-Release
-  license: http://dev.perl.org/licenses/
-  repository: git://github.com/yanick/dist-release.git
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: Dist-Release
+provides:
+  Dist::Release:
+    file: lib/Dist/Release.pm
+    version: 0.0_4
+  Dist::Release::Action:
+    file: lib/Dist/Release/Action.pm
+    version: 0.0_4
+  Dist::Release::Action::CPANUpload:
+    file: lib/Dist/Release/Action/CPANUpload.pm
+    version: 0.0_4
+  Dist::Release::Action::GenerateDistribution:
+    file: lib/Dist/Release/Action/GenerateDistribution.pm
+    version: 0.0_4
+  Dist::Release::Action::GenerateDistribution::Build:
+    file: lib/Dist/Release/Action/GenerateDistribution/Build.pm
+    version: 0.0_4
+  Dist::Release::Action::Github:
+    file: lib/Dist/Release/Action/Github.pm
+    version: 0.0_4
+  Dist::Release::Check:
+    file: lib/Dist/Release/Check.pm
+    version: 0.0_4
+  Dist::Release::Check::Manifest:
+    file: lib/Dist/Release/Check/Manifest.pm
+    version: 0.0_4
+  Dist::Release::Check::Manifest::Build:
+    file: lib/Dist/Release/Check/Manifest/Build.pm
+    version: 0.0_4
+  Dist::Release::Check::VCS::WorkingDirClean:
+    file: lib/Dist/Release/Check/VCS/WorkingDirClean.pm
+    version: 0.0_4
+  Dist::Release::Check::VCS::WorkingDirClean::Git:
+    file: lib/Dist/Release/Check/VCS/WorkingDirClean/Git.pm
+    version: 0.0_4
+  Dist::Release::Step:
+    file: lib/Dist/Release/Step.pm
+    version: 0.0_4
+  Dist::Release::Step::Builder:
+    file: lib/Dist/Release/Step/Builder.pm
+    version: 0.0_4
+  Dist::Release::Step::VCS:
+    file: lib/Dist/Release/Step/VCS.pm
+    version: 0.0_4
 requires:
   CPAN::Uploader: 0
   Hash::Merge: 0
   IPC::Cmd: 0
   Moose: 0
   Moose::Policy: 0
+  MooseX::Policy::SemiAffordanceAccessor: 0
   Readonly: 0
   Test::More: 0
   YAML: 0
-  perl: 5.10.0
+  perl: v5.10.0
   version: 0
-provides:
-  Dist::Release:
-    file: lib/Dist/Release.pm
-    version: 0.0_3
-  Dist::Release::Action:
-    file: lib/Dist/Release/Action.pm
-  Dist::Release::Action::CPANUpload:
-    file: lib/Dist/Release/Action/CPANUpload.pm
-  Dist::Release::Action::GenerateDistribution:
-    file: lib/Dist/Release/Action/GenerateDistribution.pm
-  Dist::Release::Action::GenerateDistribution::Build:
-    file: lib/Dist/Release/Action/GenerateDistribution/Build.pm
-  Dist::Release::Action::Github:
-    file: lib/Dist/Release/Action/Github.pm
-  Dist::Release::Check:
-    file: lib/Dist/Release/Check.pm
-  Dist::Release::Check::Manifest:
-    file: lib/Dist/Release/Check/Manifest.pm
-  Dist::Release::Check::Manifest::Build:
-    file: lib/Dist/Release/Check/Manifest/Build.pm
-  Dist::Release::Check::VCS::WorkingDirClean:
-    file: lib/Dist/Release/Check/VCS/WorkingDirClean.pm
-  Dist::Release::Check::VCS::WorkingDirClean::Git:
-    file: lib/Dist/Release/Check/VCS/WorkingDirClean/Git.pm
-  Dist::Release::Step:
-    file: lib/Dist/Release/Step.pm
-  Dist::Release::Step::Builder:
-    file: lib/Dist/Release/Step/Builder.pm
-    version: 0.0_3
-  Dist::Release::Step::VCS:
-    file: lib/Dist/Release/Step/VCS.pm
-generated_by: Module::Build version 0.280801
-meta-spec:
-  url: http://module-build.sourceforge.net/META-spec-v1.2.html
-  version: 1.2
+resources:
+  bugtracker: http://rt.cpan.org/NoAuth/Bugs.html?Dist=Dist-Release
+  license: http://dev.perl.org/licenses/
+  repository: git://github.com/yanick/dist-release.git
+version: 0.0_4

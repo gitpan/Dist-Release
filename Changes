@@ -1,5 +1,8 @@
 Revision history for Dist-Release
 
+0.0_4  
+        - Deprecation notice in favor of Dist::Zilla
+
 0.0_3  Fri Nov 14 2008
         - Added the Build* modules to the MANIFEST (and the distro)
 
