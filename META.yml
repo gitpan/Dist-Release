@@ -13,46 +13,64 @@ name: Dist-Release
 provides:
   Dist::Release:
     file: lib/Dist/Release.pm
-    version: 0.0_4
+    version: 0.0_5
   Dist::Release::Action:
     file: lib/Dist/Release/Action.pm
-    version: 0.0_4
+    version: 0.0_5
   Dist::Release::Action::CPANUpload:
     file: lib/Dist/Release/Action/CPANUpload.pm
-    version: 0.0_4
+    version: 0.0_5
   Dist::Release::Action::GenerateDistribution:
     file: lib/Dist/Release/Action/GenerateDistribution.pm
-    version: 0.0_4
+    version: 0.0_5
   Dist::Release::Action::GenerateDistribution::Build:
     file: lib/Dist/Release/Action/GenerateDistribution/Build.pm
-    version: 0.0_4
+    version: 0.0_5
   Dist::Release::Action::Github:
     file: lib/Dist/Release/Action/Github.pm
-    version: 0.0_4
+    version: 0.0_5
+  Dist::Release::Action::VCS::Tag:
+    file: lib/Dist/Release/Action/VCS/Tag.pm
+    version: 0.0_5
+  Dist::Release::Action::VCS::Tag::Git:
+    file: lib/Dist/Release/Action/VCS/Tag/Git.pm
+    version: 0.0_5
   Dist::Release::Check:
     file: lib/Dist/Release/Check.pm
-    version: 0.0_4
+    version: 0.0_5
   Dist::Release::Check::Manifest:
     file: lib/Dist/Release/Check/Manifest.pm
-    version: 0.0_4
+    version: 0.0_5
   Dist::Release::Check::Manifest::Build:
     file: lib/Dist/Release/Check/Manifest/Build.pm
-    version: 0.0_4
+    version: 0.0_5
+  Dist::Release::Check::SaneVersion:
+    file: lib/Dist/Release/Check/SaneVersion.pm
+    version: 0.0_5
+  Dist::Release::Check::VCS::BumpedVersion:
+    file: lib/Dist/Release/Check/VCS/BumpedVersion.pm
+    version: 0.0_5
+  Dist::Release::Check::VCS::BumpedVersion::Git:
+    file: lib/Dist/Release/Check/VCS/BumpedVersion/Git.pm
+    version: 0.0_5
   Dist::Release::Check::VCS::WorkingDirClean:
     file: lib/Dist/Release/Check/VCS/WorkingDirClean.pm
-    version: 0.0_4
+    version: 0.0_5
   Dist::Release::Check::VCS::WorkingDirClean::Git:
     file: lib/Dist/Release/Check/VCS/WorkingDirClean/Git.pm
-    version: 0.0_4
+    version: 0.0_5
   Dist::Release::Step:
     file: lib/Dist/Release/Step.pm
-    version: 0.0_4
+    version: 0.0_5
   Dist::Release::Step::Builder:
     file: lib/Dist/Release/Step/Builder.pm
-    version: 0.0_4
+    version: 0.0_5
   Dist::Release::Step::VCS:
     file: lib/Dist/Release/Step/VCS.pm
-    version: 0.0_4
+    version: 0.0_5
+  Dist::Release::Version:
+    file: lib/Dist/Release/Version.pm
+    version: 0.0_5
 requires:
   CPAN::Uploader: 0
   Hash::Merge: 0
@@ -69,4 +87,4 @@ resources:
   bugtracker: http://rt.cpan.org/NoAuth/Bugs.html?Dist=Dist-Release
   license: http://dev.perl.org/licenses/
   repository: git://github.com/yanick/dist-release.git
-version: 0.0_4
+version: 0.0_5

@@ -1,4 +1,4 @@
-package Dist::Release::Check::VCS::WorkingDirClean;
+package Dist::Release::Check::VCS::BumpedVersion;
 
 use Moose;
 
